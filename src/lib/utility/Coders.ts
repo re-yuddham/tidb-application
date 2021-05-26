@@ -7,7 +7,7 @@ export const encoders = (dbType: DbTypes) => {
             "position": "${dbType.position}",
             "reportsTo": "${dbType.reportsTo}",
         }`;
-}
+};
 
 export const decoders = async (jsonString: string, dbType: string): Promise<Employee> => {
     if(dbType === "Employee") {
@@ -35,4 +35,4 @@ export const decoders = async (jsonString: string, dbType: string): Promise<Empl
             reportsTo: parsedJson.reportsTo,
         };
     }
-}
+};

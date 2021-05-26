@@ -11,7 +11,7 @@ export const saveEmployee = (
 ): Promise<DbResult> => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, connection) => {
-      if (err) {
+      if (err || !connection.query) {
         reject(new Error("Connection error"));
       }
 

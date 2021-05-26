@@ -1,8 +1,15 @@
 import express from "express";
+import bodyParser from "body-parser";
+import { handleEmployee } from "./controllers/Employee.controller";
 
 const app = express();
 
 const port = process.env.PORT || 8080;
+
+app.use(express.urlencoded({'extended': true}));
+app.use(express.json());
+
+app.post("/employee", handleEmployee);
 
 app.listen(port, () => {
     console.log(`server started on ${port}`);

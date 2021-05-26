@@ -1,15 +1,8 @@
-import mysql from "mysql2";
+export const getEmployeeInsertStatement = (employee: Employee) => {
+  return `INSERT INTO employee(id, name, experience, age, position_in_company, reports_to) 
+  VALUES(${employee.id}, "${employee.name}", ${employee.experience}, ${employee.age}, "${employee.position}", ${employee.reportsTo})`;
+};
 
-export const createConnection = ({
-  host,
-  user,
-  password,
-  database,
-}: mysql.ConnectionOptions) => {
-  return mysql.createConnection({
-    host,
-    user,
-    password,
-    database,
-  });
+export const selectEmployeeStatement = () => {
+  return `SELECT * FROM employee`;
 };

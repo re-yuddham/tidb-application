@@ -1,4 +1,4 @@
-export const encoders = (dbType: DbTypes) => {
+export const encoder = (dbType: DbTypes) => {
             return `{
             "id": "${dbType.id}",
             "name": "${dbType.name}",
@@ -9,7 +9,7 @@ export const encoders = (dbType: DbTypes) => {
         }`;
 };
 
-export const decoders = async (jsonString: string, dbType: string): Promise<Employee> => {
+export const decoder = async (jsonString: string, dbType: string): Promise<Employee> => {
     if(dbType === "Employee") {
 
         const parsedJson = await JSON.parse(jsonString);

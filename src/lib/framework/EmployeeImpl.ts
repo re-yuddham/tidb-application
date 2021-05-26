@@ -5,18 +5,23 @@ import {
   selectEmployeeStatement,
 } from "../utility/Utility";
 
-export const saveEmployee = (employee: Employee, pool: mysql.Pool): Promise<DbResult> => {
+export const saveEmployee = (
+  employee: Employee,
+  pool: mysql.Pool
+): Promise<DbResult> => {
   return new Promise((resolve, reject) => {
-
     pool.getConnection((err, connection) => {
       if (err) {
         reject(new Error("Connection error"));
       }
-  
-      connection.query(getEmployeeInsertStatement(employee), (error, result) => {
-        connection.release();
-        resolve({ error, result });
-      });
+
+      connection.query(
+        getEmployeeInsertStatement(employee),
+        (error, result) => {
+          connection.release();
+          resolve({ error, result });
+        }
+      );
     });
   });
 };

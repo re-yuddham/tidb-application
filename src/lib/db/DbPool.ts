@@ -21,4 +21,4 @@ export class DbPool {
 
     return this.poolConnection;
   }
-};
+}

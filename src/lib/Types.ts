@@ -1,2 +1,1 @@
-type DbTypes=
-| Employee;
+type DbTypes = Employee;

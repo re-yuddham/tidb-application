@@ -11,9 +11,9 @@ export const handleEmployee = async (
     const employee = await decoder(body, "Employee");
     const result = await saveEmployee(employee, DbPool.getPoolConnection());
 
-    if(result.error) {
-        console.log(`error saving employee ${result.error}`);
-        response.status(400).send(`{
+    if (result.error) {
+      console.log(`error saving employee ${result.error}`);
+      response.status(400).send(`{
             "message": "Decode error"
         }`);
     }

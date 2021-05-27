@@ -20,15 +20,13 @@ export const handleEmployee = async (
             "message": "Decode error"
         }`);
     }
-    //console.log(result.result);
-    //console.log(`employee saved ${result}`);
 
     response.status(200).set("Content-Type", "appliation/json").send(`{
             "message": "Employee saved successfully"
         }`);
     
         const timeNow = new Date().getMilliseconds();
-        console.log(`time spent in complete ${timeNow - timeThen}`);
+        console.log(`time spent in request ${timeNow - timeThen}`);
   } catch (err) {
     console.log(`Error in decoding employee ${err}`);
     response.status(400).set("Content-Type", "appliation/json").send(`{

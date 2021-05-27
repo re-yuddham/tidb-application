@@ -15,7 +15,7 @@ export class DbPool {
         port,
         password,
         database,
-        connectionLimit: 10,
+        connectionLimit: 50,
       });
     }
 

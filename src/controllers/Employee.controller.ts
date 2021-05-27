@@ -2,12 +2,13 @@ import express from "express";
 import { DbPool } from "../lib/db/DbPool";
 import { saveEmployee, getAllEmployees } from "../lib/framework/EmployeeImpl";
 import { decoder } from "../lib/utility/Coders";
-import { getEmployeeQueryResult } from "../lib/utility/Utility";
+//import { getEmployeeQueryResult } from "../lib/utility/Utility";
 
 export const handleEmployee = async (
   request: express.Request,
   response: express.Response
 ) => {
+  const timeThen = new Date().getMilliseconds();
   const body = JSON.stringify(request.body);
   try {
     const employee = await decoder(body, "Employee");
@@ -19,12 +20,15 @@ export const handleEmployee = async (
             "message": "Decode error"
         }`);
     }
-    console.log(result.result);
-    console.log(`employee saved ${result}`);
+    //console.log(result.result);
+    //console.log(`employee saved ${result}`);
 
     response.status(200).set("Content-Type", "appliation/json").send(`{
             "message": "Employee saved successfully"
         }`);
+    
+        const timeNow = new Date().getMilliseconds();
+        console.log(`time spent in complete ${timeNow - timeThen}`);
   } catch (err) {
     console.log(`Error in decoding employee ${err}`);
     response.status(400).set("Content-Type", "appliation/json").send(`{
@@ -35,7 +39,7 @@ export const handleEmployee = async (
 
 
 
-export const getEmployees = async(request: express.Request, response: express.Response) => {
+/*export const getEmployees = async(request: express.Request, response: express.Response) => {
 
   try {
     const result = await getAllEmployees(DbPool.getPoolConnection());
@@ -48,7 +52,7 @@ export const getEmployees = async(request: express.Request, response: express.Re
     }
     //console.log(result.result);
     console.log(`employee fetched ${result}`);
-    getEmployeeQueryResult(result.result);
+    //getEmployeeQueryResult(result.result);
 
     response.status(200).set("Content-Type", "appliation/json").send(`{
             "message": "Employee fetched successfully"
@@ -59,4 +63,4 @@ export const getEmployees = async(request: express.Request, response: express.Re
             "message": "Decode error"
         }`);
   }
-}
+}*/

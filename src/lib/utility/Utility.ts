@@ -10,8 +10,8 @@ export const selectEmployeeStatement = () => {
   return `SELECT * FROM employee`;
 };
 
-export const getEmployeeQueryResult = (result: DbResult) => {
+/*export const getEmployeeQueryResult = (result: DbResult) => {
     result.forEach(item => {
       console.log(item);
     });
-};
+};*/

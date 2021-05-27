@@ -32,8 +32,7 @@ const options = {
 	concurrency: 5,
 	method: 'POST',
 	body:generateEmployee(),
-	requestsPerSecond:10,
-	maxSeconds:20,
+    maxRequests: 5000,
 	contentType: "application/json"
 };
 

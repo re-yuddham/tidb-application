@@ -14,7 +14,8 @@ export const saveEmployee = (
       if (err || !connection.query) {
         reject(new Error("Connection error"));
       }
-
+      
+      
       connection.query(
         getEmployeeInsertStatement(employee),
         (error, result) => {

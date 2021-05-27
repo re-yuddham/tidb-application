@@ -26,15 +26,19 @@ export const saveEmployee = (
   });
 };
 
-export const getEmployees = (pool: mysql.Pool) => {
-  pool.getConnection((err, connection) => {
-    if (err) {
-      Promise.reject(new Error("Connection error"));
-    }
+export const getAllEmployees = (pool: mysql.Pool): Promise<DbResult> => {
 
-    connection.query(selectEmployeeStatement(), (err, result) => {
-      connection.release();
-      Promise.resolve({ err, result });
+  return new Promise((resolve, reject) => {
+
+    pool.getConnection((err, connection) => {
+      if (err) {
+        reject(new Error("Connection error"));
+      }
+  
+      connection.query(selectEmployeeStatement(), (error, result) => {
+        connection.release();
+        resolve({ error, result });
+      });
     });
   });
 };

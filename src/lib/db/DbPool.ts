@@ -6,9 +6,9 @@ export class DbPool {
 
   private constructor() {}
 
-  public static getPoolConnection() {
+  public static getPoolConnection(region: string) {
     if (!this.poolConnection) {
-      const { host, user, port, password, database } = getDbConfig();
+      const { host, user, port, password, database } = getDbConfig(region);
       this.poolConnection = mysql.createPool({
         host,
         user,

@@ -4,6 +4,8 @@ import { saveEmployee, getAllEmployees } from "../lib/framework/EmployeeImpl";
 import { decoder } from "../lib/utility/Coders";
 //import { getEmployeeQueryResult } from "../lib/utility/Utility";
 
+const region = process.env.REGION;
+
 export const handleEmployee = async (
   request: express.Request,
   response: express.Response
@@ -12,7 +14,7 @@ export const handleEmployee = async (
   const body = JSON.stringify(request.body);
   try {
     const employee = await decoder(body, "Employee");
-    const result = await saveEmployee(employee, DbPool.getPoolConnection());
+    const result = await saveEmployee(employee, DbPool.getPoolConnection(region));
 
     if (result.error) {
       console.log(`error saving employee ${result.error}`);

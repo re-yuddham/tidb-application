@@ -56,7 +56,7 @@ const regionToTest = [regions[0]];
 const options = regionToTest.map((region) => {
   return {
     url: "http://localhost:8080/employee",
-    concurrency: 5,
+    concurrency: 10,
     method: "POST",
     body: generateEmployee(),
     maxRequests: 5000,

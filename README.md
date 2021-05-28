@@ -25,7 +25,7 @@ node loadTest.js
 
 ## The Application
 
-Application is developed in Typescript ![Typescript](https://hackr.io/tutorials/typescript/logo-typescript.svg?ver=1610119323) and its implemented with very basic `regions ` concept. Let's have a look through the major components of the application.
+Application is developed in Typescript <img src="https://hackr.io/tutorials/typescript/logo-typescript.svg?ver=1610119323" width=20 height=20> and its implemented with very basic `regions ` concept. Let's have a look through the major components of the application.
 
 #### Database Config
 

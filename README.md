@@ -61,10 +61,10 @@ We ran the application with multiple configuration. Here are some of the observa
     "maxLatencyMs": 337,
     "minLatencyMs": 9,
     "percentiles": {
-        '50': 33,
-        '90': 72,
-        '95': 92,
-        '99': 158
+        "50": 33,
+        "90": 72,
+        "95": 92,
+        "99": 158
     },
     "errorCodes": {},
     "instanceIndex": 0
@@ -83,10 +83,10 @@ We ran the application with multiple configuration. Here are some of the observa
     "maxLatencyMs": 124,
     "minLatencyMs": 8,
     "percentiles": {
-        '50': 27,
-        '90': 41,
-        '95': 48,
-        '99': 70
+        "50": 27,
+        "90": 41,
+        "95": 48,
+        "99": 70
     },
     "errorCodes": {},
     "instanceIndex": 0
@@ -105,10 +105,10 @@ We ran the application with multiple configuration. Here are some of the observa
     "maxLatencyMs": 183,
     "minLatencyMs": 10,
     "percentiles": {
-        '50': 37,
-        '90': 57,
-        '95': 68,
-        '99': 116
+        "50": 37,
+        "90": 57,
+        "95": 68,
+        "99": 116
     },
     "errorCodes": {},
     "instanceIndex": 0

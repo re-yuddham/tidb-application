@@ -51,7 +51,7 @@ const regions = [
   },
 ];
 
-const regionToTest = [regions[0]];
+const regionToTest = regions;
 
 const options = regionToTest.map((region) => {
   return {

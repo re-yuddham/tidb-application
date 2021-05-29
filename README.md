@@ -193,7 +193,7 @@ TiDB Operator helps manage TiDB on Kubernetes and automates tasks related to ope
     ``` 
 
 ### Results: 
-    ```
+```
     SQL statistics:
         queries performed:
             read:                            301125
@@ -219,7 +219,7 @@ TiDB Operator helps manage TiDB on Kubernetes and automates tasks related to ope
     Threads fairness:
         events (avg/stddev):           15056.2500/38.13
         execution time (avg/stddev):   119.9751/0.00
-    ````
+````
 
 ## Conclusion
 

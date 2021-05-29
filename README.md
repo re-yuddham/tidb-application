@@ -168,7 +168,7 @@ Although autoscaling is documented in the `tidb` official documentation, we had 
 [Official Documentation](https://docs.pingcap.com/tidb-in-kubernetes/dev/get-started) All the best 👍
 
 ### TiDB Operator
-    TiDB Operator helps manage TiDB on Kubernetes and automates tasks related to operating the TiDB cluster, which makes TiDB easier to deploy on any cloud that provides managed Kubernetes.
+TiDB Operator helps manage TiDB on Kubernetes and automates tasks related to operating the TiDB cluster, which makes TiDB easier to deploy on any cloud that provides managed Kubernetes.
 
 ### Prerequisites
     Docker: version >= 17.03

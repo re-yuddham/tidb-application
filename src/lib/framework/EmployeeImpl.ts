@@ -9,7 +9,7 @@ export const saveEmployee = (
   employee: Employee,
   pool: mysql.Pool
 ): Promise<DbResult> => {
-  
+
   return new Promise((resolve, reject) => {
     /**
      * Here we wait till we get a connection from 
@@ -41,7 +41,7 @@ export const getAllEmployees = (pool: mysql.Pool): Promise<DbResult> => {
         reject(new Error("Connection error"));
       }
 
-      connection.query(selectEmployeeStatement(), (error, result) => {
+      connection.query(selectEmployeeStatement([],[]), (error, result) => {
         connection.release();
         resolve({ error, result });
       });

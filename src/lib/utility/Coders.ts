@@ -1,3 +1,15 @@
+
+ const keyList = [
+  "id",
+  "name",
+  "experience",
+  "age",
+  "position",
+  "reportsTo",
+  "reports_to",
+  "position_in_company",
+];
+
 export const encoder = (dbType: DbTypes) => {
   return `{
             "id": "${dbType.id}",
@@ -9,39 +21,63 @@ export const encoder = (dbType: DbTypes) => {
         }`;
 };
 
-export const decoder = async (
+export const decode = async(
   jsonString: string,
   dbType: string
-): Promise<Employee> => {
-  if (dbType === "Employee") {
-    const parsedJson = await JSON.parse(jsonString);
+): Promise<Employee[]> => {
+  
+  if(dbType === "Employee") {
+    const parsed = await JSON.parse(jsonString);
 
-    const keyList = [
-      "id",
-      "name",
-      "experience",
-      "age",
-      "position",
-      "reportsTo",
-    ];
+    if(Array.isArray(parsed)) {
+        if(!parsed.every(item => validateJSON(item, dbType))) {
+          await Promise.reject(new Error("decoding error"));
+        }
 
-    if (Object.keys(parsedJson).length === 0) {
-      await Promise.reject(new Error(`Decoding error occured ${parsedJson}`));
+         const empArray =  parsed.map(item => {
+          const emp: Employee = {
+            id: item.id,
+            name: item.name,
+            experience: item.experience,
+            age: item.age,
+            position: item.position || item.position_in_company,
+            reportsTo: item.reportsTo || item.reports_to,
+          };
+          return emp;
+        });
+        return empArray;
+    }
+    else {
+      if(!validateJSON(parsed, dbType)) {
+        await Promise.reject(new Error("decoding error"));
+      }
+
+      return [{
+        id: parsed.id,
+      name: parsed.name,
+      experience: parsed.experience,
+      age: parsed.age,
+      position: parsed.position || parsed.position_in_company,
+      reportsTo: parsed.reportsTo || parsed.reports_to,
+      }];
     }
 
-    const errorKeys = keyList.filter((item) => !(item in parsedJson));
-
-    if (errorKeys.length > 0) {
-      await Promise.reject(new Error(`Decoding error occured ${errorKeys}`));
-    }
-
-    return {
-      id: parsedJson.id,
-      name: parsedJson.name,
-      experience: parsedJson.experience,
-      age: parsedJson.age,
-      position: parsedJson.position,
-      reportsTo: parsedJson.reportsTo,
-    };
   }
+  return [];
+};
+
+
+const validateJSON = (json: any, dbType: string): boolean => {
+  
+  if(dbType === "Employee") {
+    if (Object.keys(json).length === 0) {
+      return false;
+    }
+
+    const errorKeys = Object.keys(json).every(item => item in json);
+
+    return errorKeys;
+  }
+
+  return false;
 };

@@ -23,7 +23,7 @@
 
 - ### <b> Cloud-native distributed database </b>
 
-    TiDB is a distributed database designed for the cloud, providing flexible scalability, reliability and security on the cloud platform. Users can elastically scale TiDB to meet the requirements of their changing workloads. TiDB Operator helps manage TiDB on Kubernetes and automates tasks related to operating the TiDB cluster, which makes TiDB easier to deploy on any cloud that provides managed Kubernetes. TiDB Cloud (Beta), the fully-managed TiDB service, is the easiest, most economical, and most resilient way to unlock the full power of TiDB in the cloud, allowing you to deploy and run TiDB clusters with just a few clicks.
+    TiDB is a distributed database designed for the cloud, providing flexible scalability, reliability and security on the cloud platform. Users can elastically scale TiDB to meet the requirements of their changing workloads.TiDB Cloud (Beta), the fully-managed TiDB service, is the easiest, most economical, and most resilient way to unlock the full power of TiDB in the cloud, allowing you to deploy and run TiDB clusters with just a few clicks.
 
 - ### <b> Compatible with the MySQL 5.7 protocol and MySQL ecosystem </b>
 
@@ -166,6 +166,60 @@ We ran the application with multiple configuration. Here are some of the observa
 Although autoscaling is documented in the `tidb` official documentation, we had a tough time configuring it in local. `Kubernetes` is used to automatically scale out the `TiDb` server.
 
 [Official Documentation](https://docs.pingcap.com/tidb-in-kubernetes/dev/get-started) All the best 👍
+
+### TiDB Operator
+    TiDB Operator helps manage TiDB on Kubernetes and automates tasks related to operating the TiDB cluster, which makes TiDB easier to deploy on any cloud that provides managed Kubernetes.
+
+### Prerequisites
+    Docker: version >= 17.03
+    kubectl: version >= 1.12
+    kind: version >= 0.8.0
+    helm: version >= 3
+    TiDB Operator
+    TiDB cluster
+
+### Tweaks required which are not mentioned in documentation:
+ - Enable autoscaling feature in TiDB Operator by executing: 
+    ```
+    helm upgrade -n {namespace} tidb-operator pingcap/tidb-operator --version v1.2.0-beta.2 -f /autoscaler/values-tidb-operator.yaml
+    ```
+- Update resource configuration of the target TiDB cluster:
+  ```
+  kubectl -n {namespace} apply -f autoscaler/tidb-cluster.yaml
+  ```
+- Apply the autoscale configuration:
+    ```
+    kubectl -n {namespace} apply -f autosclaer/tidb-auto-scale.yaml
+    ``` 
+
+### Results: 
+    ```
+    SQL statistics:
+        queries performed:
+            read:                            301125
+            write:                           0
+            other:                           0
+            total:                           301125
+        transactions:                        301125 (2509.11 per sec.)
+        queries:                             301125 (2509.11 per sec.)
+        ignored errors:                      0      (0.00 per sec.)
+        reconnects:                          0      (0.00 per sec.)
+
+    General statistics:
+        total time:                          120.0115s
+        total number of events:              301125
+
+    Latency (ms):
+            min:                                  1.40
+            avg:                                  7.97
+            max:                                214.16
+            95th percentile:                     17.01
+            sum:                            2399502.54
+
+    Threads fairness:
+        events (avg/stddev):           15056.2500/38.13
+        execution time (avg/stddev):   119.9751/0.00
+    ````
 
 ## Conclusion
 

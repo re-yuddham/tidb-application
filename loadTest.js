@@ -59,7 +59,7 @@ const options = regionToTest.map((region) => {
     concurrency: 10,
     method: "POST",
     body: generateEmployee(),
-    maxRequests: 100,
+    maxRequests: 5000,
     contentType: "application/json",
   };
 });

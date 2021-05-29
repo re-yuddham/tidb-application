@@ -2,17 +2,6 @@
 
 ![example workflow](https://github.com/re-yuddham/DDS/actions/workflows/build.yml/badge.svg)
 
-Locally it runs upto 3 instances.
-
-```bash
-sh startScript.sh
-```
-
-To run the load test on the application
-
-```bash
-node loadTest.js
-```
 
 ## What is TiDB
  - TiDB is a distributed SQL database platform that features horizontal scalability, strong consistency, and high availability. 
@@ -67,6 +56,22 @@ The TiFlash Server is a special type of storage server. Unlike ordinary TiKV nod
 ## The Application
 
 Application is developed in Typescript <img src="https://hackr.io/tutorials/typescript/logo-typescript.svg?ver=1610119323" width=20 height=20> and its implemented with very basic `regions ` concept. Let's have a look through the major components of the application.
+
+#### Running application locally
+
+Locally it runs upto 3 instances.
+
+```bash
+sh startScript.sh
+```
+
+To run the load test on the application
+
+```bash
+node loadTest.js
+```
+
+
 
 #### Database Config
 

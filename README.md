@@ -13,6 +13,7 @@ To run the load test on the application
 ```bash
 node loadTest.js
 ```
+
 ## What is TiDB
  - TiDB is a distributed SQL database platform that features horizontal scalability, strong consistency, and high availability. 
 - The goal of TiDB is to serve as a one-stop solution for all online transactions and analysis so you can build your applications just as simply as on a single node.
@@ -165,7 +166,19 @@ Although autoscaling is documented in the `tidb` official documentation, we had 
 
 `TiDb` offers a nice learning opportunity for those who want to venture into the wilderness of distributed systems.
 
-### The performance
+### Comparison
+
+| Feature | Amazon Aurora | Google Cloud Spanner | YugaByteDB | CockroachDB | `TiDB` |
+| --- | --- | --- | --- | --- | --- |
+| Elastic scalability (Both read and write) | ❌   | ✔   | ✔   | ✔   | ✔   |
+| Automated failover and high availability | ✔   | ✔   | ✔   | ✔   | ✔   |
+| Distributed ACID transactions | ✔   | ✔   | ✔   | ✔   | ✔   |
+| SQL compatibility and protocol | Mysql/Postgres | Proprietary | PostgreSQL | PostgreSQL | Mysql |
+| Open Source License | ❌   | ❌   | Apache 2.0 | BSL and CCL | Apache 2.0 |
+| Open Source Contributor Count | ❌   | ❌   | 100+ | 300+ | 500+ |
+| HTAP | ❌   | ❌   | ❌   | ❌   | ✔   |
+
+### Performance
 
 Key aspects of the TiDb servers are horizontally scaled architecture and the load balancing components such as Linux Virtual Server (LVS), HAProxy, or F5.
 
